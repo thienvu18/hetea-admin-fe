@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dc743a06a829f9f3078c41bce215afd6",
+    "revision": "aca22e600c58a709c404bc5bb071fde1",
     "url": "/hetea-admin-fe/index.html"
   },
   {
-    "revision": "190be719e62c5ef9c03d",
+    "revision": "ee5bb14cb9d17bf16828",
     "url": "/hetea-admin-fe/static/css/main.b100e6da.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hetea-admin-fe/static/js/2.c09c9e16.chunk.js"
   },
   {
-    "revision": "190be719e62c5ef9c03d",
-    "url": "/hetea-admin-fe/static/js/main.dfbc36c9.chunk.js"
+    "revision": "ee5bb14cb9d17bf16828",
+    "url": "/hetea-admin-fe/static/js/main.6db36415.chunk.js"
   },
   {
     "revision": "97aee2917d556c8cf24e",
