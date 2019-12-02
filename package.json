@@ -1,5 +1,6 @@
 {
 	"name": "hetea-admin-fe",
+	"homepage": "http://thienvu18.github.io/hetea-admin-fe",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
