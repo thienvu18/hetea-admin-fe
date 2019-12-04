@@ -1,11 +1,12 @@
 import Login from './pages/LoginPage';
+import Create from './components/Create'; 
 
 var routes = [
   {
     path: '/index',
     name: 'Dashboard',
     icon: 'ni ni-tv-2 text-primary',
-    component: Login,
+    component: Create,
     layout: '/admin'
   },
   {
@@ -23,10 +24,10 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/user-profile',
-    name: 'User Profile',
+    path: '/create',
+    name: 'Create admin',
     icon: 'ni ni-single-02 text-yellow',
-    component: Login,
+    component: Create,
     layout: '/admin'
   },
   {
@@ -36,19 +37,5 @@ var routes = [
     component: Login,
     layout: '/admin'
   },
-  {
-    path: '/login',
-    name: 'Login',
-    icon: 'ni ni-key-25 text-info',
-    component: Login,
-    layout: '/auth'
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    icon: 'ni ni-circle-08 text-pink',
-    component: Login,
-    layout: '/auth'
-  }
 ];
 export default routes;

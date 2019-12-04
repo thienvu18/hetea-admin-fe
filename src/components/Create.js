@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 // core components
 import Header from './Header';
-class Profile extends React.Component {
+class Create extends React.Component {
   render() {
     return (
       <>
@@ -155,4 +155,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default Create;

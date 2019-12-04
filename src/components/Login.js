@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react';
 
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -14,52 +13,17 @@ import {
   InputGroup,
   Row,
   Col
-} from "reactstrap";
+} from 'reactstrap';
 
 class Login extends React.Component {
   render() {
     return (
       <center>
-        <Col lg="5" md="7" style={{marginTop:"40px"}}>
-          <Card className="bg-secondary shadow border-0">
-            <CardHeader className="bg-transparent pb-5">
-              <div className="text-muted text-center mt-2 mb-3">
-                <small>Sign in with</small>
-              </div>
-              <div className="btn-wrapper text-center">
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require("../assets/img/icons/common/github.svg")}
-                    />
-                  </span>
-                  <span className="btn-inner--text">Github</span>
-                </Button>
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require("../assets/img/icons/common/google.svg")}
-                    />
-                  </span>
-                  <span className="btn-inner--text">Google</span>
-                </Button>
-              </div>
-            </CardHeader>
-            <CardBody className="px-lg-5 py-lg-5">
+        <Col lg="5" md="7" style={{ marginTop: '100px' }}>
+          <Card className="bg-secondary shadow border-1">
+             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                SIGN IN
               </div>
               <Form role="form">
                 <FormGroup className="mb-3">
@@ -101,28 +65,28 @@ class Login extends React.Component {
                   </Button>
                 </div>
               </Form>
+              <Row className="mt-3">
+                <Col xs="6">
+                  <a
+                    className=" text-muted"
+                    href="#pablo"
+                    onClick={e => e.preventDefault()}
+                  >
+                    <small>Forgot password?</small>
+                  </a>
+                </Col>
+                <Col className="text-right" xs="6">
+                  <a
+                    className=" text-muted"
+                    href="#pablo"
+                    onClick={e => e.preventDefault()}
+                  >
+                    <small>Create new account</small>
+                  </a>
+                </Col>
+              </Row>
             </CardBody>
           </Card>
-          <Row className="mt-3">
-            <Col xs="6">
-              <a
-                className="text-light"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className="text-right" xs="6">
-              <a
-                className="text-light"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
-              >
-                <small>Create new account</small>
-              </a>
-            </Col>
-          </Row>
         </Col>
       </center>
     );

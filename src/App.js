@@ -6,14 +6,15 @@ import './assets/vendor/nucleo/css/nucleo.css';
 import './assets/vendor/@fortawesome/fontawesome-free/css/all.min.css';
 import './assets/scss/argon-dashboard-react.scss';
 import Login from './pages/LoginPage';
-import Create from './pages/CreatePage';
+import AdminPage from './pages/AdminPage';
+// import Create from './components/Create';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/admin/create" component={Create}></Route>
+        <Route path="/admin" component={AdminPage}></Route>
         <Redirect from="/" to="/login" />
       </Switch>
     </BrowserRouter>
