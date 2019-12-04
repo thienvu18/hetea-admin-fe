@@ -1,5 +1,5 @@
 import Login from './pages/LoginPage';
-import Create from './components/Create'; 
+import Create from './pages/CreatePage'; 
 
 var routes = [
   {

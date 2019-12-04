@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -16,15 +17,27 @@ import {
 } from 'reactstrap';
 
 class Login extends React.Component {
+  constructor() {
+    super();
+    this.username = '';
+    this.password = '';
+    this.err = 'ddddddddd';
+  }
+
   render() {
+    const st = this.props;
+    if (this.props.token !== '' && this.props.token !== 'err') {
+      return <Redirect to="/admin"></Redirect>;
+    }
+    if (this.props.token === 'err') {
+      this.err="Invalid username or password"
+    }
     return (
       <center>
         <Col lg="5" md="7" style={{ marginTop: '100px' }}>
           <Card className="bg-secondary shadow border-1">
-             <CardBody className="px-lg-5 py-lg-5">
-              <div className="text-center text-muted mb-4">
-                SIGN IN
-              </div>
+            <CardBody className="px-lg-5 py-lg-5">
+              <div className="text-center text-muted mb-4">SIGN IN</div>
               <Form role="form">
                 <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
@@ -33,7 +46,13 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" />
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      onChange={event => {
+                        this.username = event.target.value;
+                      }}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -43,10 +62,17 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      onChange={event => {
+                        this.password = event.target.value;
+                      }}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
+                <div style={{color: "red"}}>{this.err}</div>
                   <input
                     className="custom-control-input"
                     id=" customCheckLogin"
@@ -60,7 +86,15 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button
+                    className="my-4"
+                    color="primary"
+                    onClick={event => {
+                      event.preventDefault();
+                      st.Login(this.username, this.password);
+                    }}
+                    type="button"
+                  >
                     Sign in
                   </Button>
                 </div>
@@ -93,4 +127,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
