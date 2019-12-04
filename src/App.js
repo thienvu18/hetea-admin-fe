@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
+import './assets/vendor/nucleo/css/nucleo.css';
+import './assets/vendor/@fortawesome/fontawesome-free/css/all.min.css';
+import './assets/scss/argon-dashboard-react.scss';
+import Login from './pages/LoginPage';
+import AdminPage from './pages/AdminPage';
+// import Create from './components/Create';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/admin" component={AdminPage}></Route>
+        <Redirect from="/" to="/login" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
