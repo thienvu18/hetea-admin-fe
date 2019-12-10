@@ -23,11 +23,11 @@ import Sidebar from "../components/Sidebar";
 import routes from "../routes";
 
 class Admin extends React.Component {
-  componentDidUpdate(e) {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.mainContent.scrollTop = 0;
-  }
+  // componentDidUpdate(e) {
+  //   document.documentElement.scrollTop = 0;
+  //   document.scrollingElement.scrollTop = 0;
+  //   this.refs.mainContent.scrollTop = 0;
+  // }
   getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
