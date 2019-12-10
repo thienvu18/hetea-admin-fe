@@ -42,11 +42,16 @@ class UsersInfoTable extends React.Component {
       }
     ];
   }
+  
+  componentDidMount() {
+    const UserCookie = cookie.load('token');
+    this.props.GetUsersInfo(UserCookie);
+  }
 
   render() {
     const st = this.props;
-    const UserCookie = cookie.load('token');
-    st.GetUsersInfo(UserCookie);
+    // const UserCookie = cookie.load('token');
+    // st.GetUsersInfo(UserCookie);
     return (
       <MaterialTable
         title="User Infomation List"
