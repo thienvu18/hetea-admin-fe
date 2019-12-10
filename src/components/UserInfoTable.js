@@ -1,70 +1,108 @@
 import React from 'react';
 import MaterialTable from 'material-table';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+import cookie from 'react-cookies';
 
-export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: 'Username', field: 'Username' },
-      { title: 'Name', field: 'name' },
-      { title: 'Birthday', field: 'Birthday' },
+const mapStateToProps = state => {
+  const UsersState = state.UsersReducer;
+  return {
+    data: UsersState.usersInfo
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    GetUsersInfo: (token) => {
+      dispatch(actions.GetUsersInfoRequest(token));
+    }
+  };
+};
+
+class UsersInfoTable extends React.Component {
+  constructor() {
+    super();
+    this.columns = [
       {
-        title: 'Birth Place',
-        field: 'birthPlace',
+        title: 'Avatar',
+        field: 'picture',
+        render: pictures => (
+          <img
+            style={{ height: 36, borderRadius: '50%' }}
+            src={pictures.picture}
+            alt=""
+          />
+        ),
       },
-    ],
-    data: [
-      { name: 'Mehmet', Username: 'Baran', Birthday: '1987', birthPlace: 'HN' },
+      { title: 'Name', field: 'name' },
+      { title: 'Email', field: 'email' },
+      {
+        title: 'Type',
+        field: 'Type'
+      }
+    ];
+    this.data = [
+      { picture: 'https://gravatar.com/avatar/e963ab19f02cdec3554799cf98bea425?d=identicon', name: 'chotuan', email: 'Email@gmail.com', Type: 'tutor' },
       {
         name: 'Zerya Betül',
         Username: 'Baran',
         Birthday: '2017',
-        birthPlace: 'HCM',
-      },
-    ],
-  });
+        birthPlace: 'HCM'
+      }
+    ];
+  }
 
-  return (
-    <MaterialTable
-      title="Editable Example"
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState(prevState => {
+  render() {
+    const st = this.props;
+    const UserCookie = cookie.load('token');
+    st.GetUsersInfo(UserCookie);
+    return (
+      <MaterialTable
+        title="User Infomation List"
+        columns={this.columns}
+        data={st.data}
+        editable={{
+          onRowAdd: newData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.setState(prevState => {
                   const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
+                  data.push(newData);
                   return { ...prevState, data };
                 });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-    />
-  );
+              }, 600);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                if (oldData) {
+                  this.setState(prevState => {
+                    const data = [...prevState.data];
+                    data[data.indexOf(oldData)] = newData;
+                    return { ...prevState, data };
+                  });
+                }
+              }, 600);
+            }),
+          onRowDelete: oldData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.setState(prevState => {
+                  const data = [...prevState.data];
+                  data.splice(data.indexOf(oldData), 1);
+                  return { ...prevState, data };
+                });
+              }, 600);
+            })
+        }}
+      />
+    );
+  }
 }
+
+const UsersInfo = connect(mapStateToProps, mapDispatchToProps)(UsersInfoTable);
+
+export default UsersInfo;
