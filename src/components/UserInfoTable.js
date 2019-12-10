@@ -28,7 +28,7 @@ class UsersInfoTable extends React.Component {
         field: 'picture',
         render: pictures => (
           <img
-            style={{ height: 36, borderRadius: '50%' }}
+            style={{ height: 45, borderRadius: '50%' }}
             src={pictures.picture}
             alt=""
           />
@@ -39,15 +39,6 @@ class UsersInfoTable extends React.Component {
       {
         title: 'Type',
         field: 'Type'
-      }
-    ];
-    this.data = [
-      { picture: 'https://gravatar.com/avatar/e963ab19f02cdec3554799cf98bea425?d=identicon', name: 'chotuan', email: 'Email@gmail.com', Type: 'tutor' },
-      {
-        name: 'Zerya Betül',
-        Username: 'Baran',
-        Birthday: '2017',
-        birthPlace: 'HCM'
       }
     ];
   }

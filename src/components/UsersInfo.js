@@ -14,11 +14,11 @@ class UsersInfo extends React.Component {
           {/* Page content */}
           <Container className="mt--7" fluid>
             <Row>
-              <Col className="order-xl-1" xl="12">
+              <Col className="order-xl-1" xl="12"> */}
                 <Card className="bg-secondary shadow">
                   <UserInfoTable></UserInfoTable>
                 </Card>
-              </Col>
+               </Col>
             </Row>
           </Container>
         </>
