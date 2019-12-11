@@ -21,7 +21,7 @@ class Login extends React.Component {
     super();
     this.username = '';
     this.password = '';
-    this.err = 'ddddddddd';
+    this.err = '';
   }
 
   render() {

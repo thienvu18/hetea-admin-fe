@@ -1,40 +1,41 @@
-import Login from './pages/LoginPage';
-import Create from './pages/CreatePage'; 
+import LoginPage from './pages/LoginPage';
+import CreatePage from './pages/CreatePage'; 
+import UserInfoPage from './pages/UserInfoPage';
 
 var routes = [
   {
     path: '/index',
     name: 'Dashboard',
     icon: 'ni ni-tv-2 text-primary',
-    component: Create,
+    component: CreatePage,
     layout: '/admin'
   },
   {
     path: '/icons',
     name: 'Icons',
     icon: 'ni ni-planet text-blue',
-    component: Login,
+    component: LoginPage,
     layout: '/admin'
   },
   {
     path: '/maps',
     name: 'Maps',
     icon: 'ni ni-pin-3 text-orange',
-    component: Login,
+    component: LoginPage,
     layout: '/admin'
   },
   {
-    path: '/create',
+    path: '/Create',
     name: 'Create admin',
     icon: 'ni ni-single-02 text-yellow',
-    component: Create,
+    component: CreatePage,
     layout: '/admin'
   },
   {
-    path: '/tables',
-    name: 'Tables',
+    path: '/UserInfo',
+    name: 'User Infomation',
     icon: 'ni ni-bullet-list-67 text-red',
-    component: Login,
+    component: UserInfoPage,
     layout: '/admin'
   },
 ];
