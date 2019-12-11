@@ -13,7 +13,6 @@ const UsersInfoReducer = (state = initialState, action) => {
           st.usersInfo = action.data.res.data;
           console.log("user",st.usersInfo);
       } catch (err) {
-        st.token = 'err';
       }
       console.log("state user", st);
       return st;

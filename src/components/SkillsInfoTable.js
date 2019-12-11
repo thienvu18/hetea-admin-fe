@@ -7,14 +7,24 @@ import cookie from 'react-cookies';
 const mapStateToProps = state => {
   const SkillsState = state.SkillsReducer;
   return {
-    data: SkillsState.SkillsInfo
+    data: SkillsState.SkillsInfo,
+    isUpdateskill: SkillsState.isUpdateskill
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    GetSkillsInfo: (token) => {
+    GetSkillsInfo: token => {
       dispatch(actions.GetSkillsInfoRequest(token));
+    },
+    UpdateSkillInfo: (data, token) => {
+      dispatch(actions.UpdateSkillInfoRequest(data, token));
+    },
+    AddSkillInfo: (data, token) => {
+      dispatch(actions.AddSkillInfoRequest(data, token));
+    },
+    DeleteSkillInfo: (data, token) => {
+      dispatch(actions.DeleteSkillInfoRequest(data, token));
     }
   };
 };
@@ -23,11 +33,17 @@ class SkillsInfoTable extends React.Component {
   constructor() {
     super();
     this.columns = [
+      {
+        title: 'Id',
+        field: 'id',
+        cellStyle: { display: 'none' },
+        headerStyle: { display: 'none' }
+      },
       { title: 'Skill', field: 'skill' },
       { title: 'Color', field: 'color' }
     ];
   }
-  
+
   componentDidMount() {
     const UserCookie = cookie.load('token');
     this.props.GetSkillsInfo(UserCookie);
@@ -35,6 +51,7 @@ class SkillsInfoTable extends React.Component {
 
   render() {
     const st = this.props;
+    const UserCookie = cookie.load('token');
     return (
       <MaterialTable
         title="Skills Infomation List"
@@ -45,11 +62,8 @@ class SkillsInfoTable extends React.Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
+                console.log(newData);
+                st.AddSkillInfo(newData, UserCookie);
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -57,11 +71,9 @@ class SkillsInfoTable extends React.Component {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  this.setState(prevState => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
+                  console.log(oldData, newData);
+                  st.UpdateSkillInfo(newData, UserCookie);
+                  st.GetSkillsInfo(UserCookie);
                 }
               }, 600);
             }),
@@ -69,11 +81,9 @@ class SkillsInfoTable extends React.Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
+                console.log(oldData);
+                st.DeleteSkillInfo(oldData, UserCookie);
+                st.GetSkillsInfo(UserCookie);
               }, 600);
             })
         }}
@@ -82,6 +92,9 @@ class SkillsInfoTable extends React.Component {
   }
 }
 
-const SkillsInfo = connect(mapStateToProps, mapDispatchToProps)(SkillsInfoTable);
+const SkillsInfo = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SkillsInfoTable);
 
 export default SkillsInfo;

@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    GetUsersInfo: (token) => {
+    GetUsersInfo: token => {
       dispatch(actions.GetUsersInfoRequest(token));
     }
   };
@@ -24,6 +24,12 @@ class UsersInfoTable extends React.Component {
     super();
     this.columns = [
       {
+        title: 'Id',
+        field: 'id',
+        cellStyle: { display: 'none' },
+        headerStyle:{display: 'none'}
+      },
+      {
         title: 'Avatar',
         field: 'picture',
         render: pictures => (
@@ -32,17 +38,17 @@ class UsersInfoTable extends React.Component {
             src={pictures.picture}
             alt=""
           />
-        ),
+        )
       },
       { title: 'Name', field: 'name' },
       { title: 'Email', field: 'email' },
       {
         title: 'Type',
-        field: 'Type'
+        field: 'type'
       }
     ];
   }
-  
+
   componentDidMount() {
     const UserCookie = cookie.load('token');
     this.props.GetUsersInfo(UserCookie);
@@ -74,11 +80,12 @@ class UsersInfoTable extends React.Component {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  this.setState(prevState => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
+                  // this.setState(prevState => {
+                  //   const data = [...prevState.data];
+                  //   data[data.indexOf(oldData)] = newData;
+                  //   return { ...prevState, data };
+                  // });
+                  console.log(newData);
                 }
               }, 600);
             }),
