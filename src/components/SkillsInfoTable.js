@@ -5,56 +5,39 @@ import * as actions from '../actions/actions';
 import cookie from 'react-cookies';
 
 const mapStateToProps = state => {
-  const UsersState = state.UsersReducer;
+  const SkillsState = state.SkillsReducer;
   return {
-    data: UsersState.usersInfo
+    data: SkillsState.SkillsInfo
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    GetUsersInfo: (token) => {
-      dispatch(actions.GetUsersInfoRequest(token));
+    GetSkillsInfo: (token) => {
+      dispatch(actions.GetSkillsInfoRequest(token));
     }
   };
 };
 
-class UsersInfoTable extends React.Component {
+class SkillsInfoTable extends React.Component {
   constructor() {
     super();
     this.columns = [
-      {
-        title: 'Avatar',
-        field: 'picture',
-        render: pictures => (
-          <img
-            style={{ height: 45, borderRadius: '50%' }}
-            src={pictures.picture}
-            alt=""
-          />
-        ),
-      },
-      { title: 'Name', field: 'name' },
-      { title: 'Email', field: 'email' },
-      {
-        title: 'Type',
-        field: 'Type'
-      }
+      { title: 'Skill', field: 'skill' },
+      { title: 'Color', field: 'color' }
     ];
   }
   
   componentDidMount() {
     const UserCookie = cookie.load('token');
-    this.props.GetUsersInfo(UserCookie);
+    this.props.GetSkillsInfo(UserCookie);
   }
 
   render() {
     const st = this.props;
-    // const UserCookie = cookie.load('token');
-    // st.GetUsersInfo(UserCookie);
     return (
       <MaterialTable
-        title="User Infomation List"
+        title="Skills Infomation List"
         columns={this.columns}
         data={st.data}
         editable={{
@@ -99,6 +82,6 @@ class UsersInfoTable extends React.Component {
   }
 }
 
-const UsersInfo = connect(mapStateToProps, mapDispatchToProps)(UsersInfoTable);
+const SkillsInfo = connect(mapStateToProps, mapDispatchToProps)(SkillsInfoTable);
 
-export default UsersInfo;
+export default SkillsInfo;

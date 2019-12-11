@@ -66,3 +66,32 @@ export const GetUsersInfoRequest = (token) => {
     });
   };
 };
+
+//===========================================================get skills info=======================================================================
+function OnclickGetSkillsInfo(token) {
+
+  const res = axios
+    .get(`${types.stringConnect}/Skills`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const GetSkillsInfo = (token, res) => {
+  console.log("res",res);
+  return {
+    type: types.getSkillsInfo,
+    data: { token, res }
+  };
+};
+
+export const GetSkillsInfoRequest = (token) => {
+  return dispatch => {
+    return OnclickGetSkillsInfo(token).then(res => {
+      dispatch(GetSkillsInfo(token, res));
+    });
+  };
+};

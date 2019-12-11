@@ -1,11 +1,11 @@
 import React from 'react';
-import UsersInfoTable from './UsersInfoTable';
+import SkillInfoTable from './SkillsInfoTable';
 
 // reactstrap components
 import { Card, Container, Row, Col } from 'reactstrap';
 // core components
 import Header from './Header';
-class UsersInfo extends React.Component {
+class SkillsInfo extends React.Component {
   render() {
     return (
       <div>
@@ -16,7 +16,7 @@ class UsersInfo extends React.Component {
             <Row>
               <Col className="order-xl-1" xl="12">
                 <Card className="bg-secondary shadow">
-                  <UsersInfoTable></UsersInfoTable>
+                  <SkillInfoTable></SkillInfoTable>
                 </Card>
                </Col>
             </Row>
@@ -29,4 +29,4 @@ class UsersInfo extends React.Component {
   }
 }
 
-export default UsersInfo;
+export default SkillsInfo;
