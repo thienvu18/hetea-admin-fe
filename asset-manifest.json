@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/hetea-admin-fe/static/css/main.b100e6da.chunk.css",
-    "main.js": "/hetea-admin-fe/static/js/main.6db36415.chunk.js",
-    "main.js.map": "/hetea-admin-fe/static/js/main.6db36415.chunk.js.map",
+    "main.css": "/hetea-admin-fe/static/css/main.0862ed26.chunk.css",
+    "main.js": "/hetea-admin-fe/static/js/main.e3f65535.chunk.js",
+    "main.js.map": "/hetea-admin-fe/static/js/main.e3f65535.chunk.js.map",
     "runtime-main.js": "/hetea-admin-fe/static/js/runtime-main.091b40e1.js",
     "runtime-main.js.map": "/hetea-admin-fe/static/js/runtime-main.091b40e1.js.map",
-    "static/js/2.c09c9e16.chunk.js": "/hetea-admin-fe/static/js/2.c09c9e16.chunk.js",
-    "static/js/2.c09c9e16.chunk.js.map": "/hetea-admin-fe/static/js/2.c09c9e16.chunk.js.map",
+    "static/js/2.fed2c277.chunk.js": "/hetea-admin-fe/static/js/2.fed2c277.chunk.js",
+    "static/js/2.fed2c277.chunk.js.map": "/hetea-admin-fe/static/js/2.fed2c277.chunk.js.map",
     "index.html": "/hetea-admin-fe/index.html",
-    "precache-manifest.f9aa045abd22fcc93c9c9a025261b747.js": "/hetea-admin-fe/precache-manifest.f9aa045abd22fcc93c9c9a025261b747.js",
+    "precache-manifest.09526d8e84e87f4b6077166bb5ffdcf2.js": "/hetea-admin-fe/precache-manifest.09526d8e84e87f4b6077166bb5ffdcf2.js",
     "service-worker.js": "/hetea-admin-fe/service-worker.js",
-    "static/css/main.b100e6da.chunk.css.map": "/hetea-admin-fe/static/css/main.b100e6da.chunk.css.map",
-    "static/media/logo.svg": "/hetea-admin-fe/static/media/logo.25bf045c.svg"
+    "static/css/main.0862ed26.chunk.css.map": "/hetea-admin-fe/static/css/main.0862ed26.chunk.css.map",
+    "static/media/argon-react.png": "/hetea-admin-fe/static/media/argon-react.f38ddea9.png",
+    "static/media/all.min.css": "/hetea-admin-fe/static/media/fa-solid-900.815694de.woff",
+    "static/media/nucleo.css": "/hetea-admin-fe/static/media/nucleo-icons.f82ec6ba.ttf",
+    "static/media/team-1-800x800.jpg": "/hetea-admin-fe/static/media/team-1-800x800.53033970.jpg",
+    "static/media/team-4-800x800.jpg": "/hetea-admin-fe/static/media/team-4-800x800.23007132.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.091b40e1.js",
-    "static/js/2.c09c9e16.chunk.js",
-    "static/css/main.b100e6da.chunk.css",
-    "static/js/main.6db36415.chunk.js"
+    "static/js/2.fed2c277.chunk.js",
+    "static/css/main.0862ed26.chunk.css",
+    "static/js/main.e3f65535.chunk.js"
   ]
 }
