@@ -7,7 +7,8 @@ import cookie from 'react-cookies';
 const mapStateToProps = state => {
   const UsersState = state.UsersReducer;
   return {
-    data: UsersState.usersInfo
+    data: UsersState.usersInfo,
+    isUpdateUser: UsersState.isUpdateUser
   };
 };
 
@@ -15,6 +16,15 @@ const mapDispatchToProps = dispatch => {
   return {
     GetUsersInfo: token => {
       dispatch(actions.GetUsersInfoRequest(token));
+    },
+    UpdateUserInfo: (data, token) => {
+      dispatch(actions.UpdateUserInfoRequest(data, token));
+    },
+    AddUserInfo: (data, token) => {
+      dispatch(actions.AddUserInfoRequest(data, token));
+    },
+    DeleteUserInfo: (data, token) => {
+      dispatch(actions.DeleteUserInfoRequest(data, token));
     }
   };
 };
@@ -27,7 +37,7 @@ class UsersInfoTable extends React.Component {
         title: 'Id',
         field: 'id',
         cellStyle: { display: 'none' },
-        headerStyle:{display: 'none'}
+        headerStyle: { display: 'none' }
       },
       {
         title: 'Avatar',
@@ -45,6 +55,10 @@ class UsersInfoTable extends React.Component {
       {
         title: 'Type',
         field: 'type'
+      },
+      {
+        title: 'Lock',
+        field: 'lock'
       }
     ];
   }
@@ -56,8 +70,7 @@ class UsersInfoTable extends React.Component {
 
   render() {
     const st = this.props;
-    // const UserCookie = cookie.load('token');
-    // st.GetUsersInfo(UserCookie);
+    const UserCookie = cookie.load('token');
     return (
       <MaterialTable
         title="Users Infomation List"
@@ -68,11 +81,8 @@ class UsersInfoTable extends React.Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
+                console.log(newData);
+                st.AddUserInfo(newData, UserCookie);
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -80,12 +90,9 @@ class UsersInfoTable extends React.Component {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  // this.setState(prevState => {
-                  //   const data = [...prevState.data];
-                  //   data[data.indexOf(oldData)] = newData;
-                  //   return { ...prevState, data };
-                  // });
-                  console.log(newData);
+                  console.log(oldData, 'new', newData);
+                  st.UpdateUserInfo(newData, UserCookie);
+                  // st.GetUsersInfo(UserCookie);
                 }
               }, 600);
             }),
@@ -93,11 +100,9 @@ class UsersInfoTable extends React.Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
+                console.log(oldData);
+                st.DeleteUserInfo(oldData, UserCookie);
+                st.GetUsersInfo(UserCookie);
               }, 600);
             })
         }}

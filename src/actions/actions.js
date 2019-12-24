@@ -64,6 +64,95 @@ export const GetUsersInfoRequest = token => {
   };
 };
 
+//============================================Update user info======================================================================
+function OnclickUpdateUserInfo(data, token) {
+  const res = axios
+    .put(
+      `${types.stringConnect}/users/${data.id}`,
+      { name: data.name, picture: data.picture },
+      {
+        headers: { Authorization: `bearer ${token}` }
+      }
+    )
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const UpdateUserInfo = (data, token, res) => {
+  return {
+    type: types.updateUserInfo,
+    data: { token, res }
+  };
+};
+
+export const UpdateUserInfoRequest = (data, token) => {
+  return dispatch => {
+    return OnclickUpdateUserInfo(data, token).then(res => {
+      dispatch(UpdateUserInfo(data, token, res));
+    });
+  };
+};
+
+//==============================================================Add User==================================================================
+function OnclickAddUserInfo(data, token) {
+  const res = axios
+    .post(
+      `${types.stringConnect}/users`,
+      { User: data.User, color: data.color },
+      {
+        headers: { Authorization: `bearer ${token}` }
+      }
+    )
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const AddUserInfo = (data, token, res) => {
+  return {
+    type: types.addUserInfo,
+    data: { token, res }
+  };
+};
+
+export const AddUserInfoRequest = (data, token) => {
+  return dispatch => {
+    return OnclickAddUserInfo(data, token).then(res => {
+      dispatch(AddUserInfo(data, token, res));
+    });
+  };
+};
+
+//====================================================================delete User=================================================================
+function OnclickDeleteUserInfo(data, token) {
+  const res = axios
+    .delete(`${types.stringConnect}/users/${data.id}`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const DeleteUserInfo = (data, token, res) => {
+  return {
+    type: types.deleteUserInfo,
+    data: { token, res }
+  };
+};
+
+export const DeleteUserInfoRequest = (data, token) => {
+  return dispatch => {
+    return OnclickDeleteUserInfo(data, token).then(res => {
+      dispatch(DeleteUserInfo(data, token, res));
+    });
+  };
+};
+
 //===========================================================get skills info=======================================================================
 function OnclickGetSkillsInfo(token) {
   const res = axios
@@ -156,12 +245,9 @@ export const AddSkillInfoRequest = (data, token) => {
 //====================================================================delete skill=================================================================
 function OnclickDeleteSkillInfo(data, token) {
   const res = axios
-    .delete(
-      `${types.stringConnect}/Skills/${data.id}`,
-      {
-        headers: { Authorization: `bearer ${token}` }
-      }
-    )
+    .delete(`${types.stringConnect}/Skills/${data.id}`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
     .catch(error => {
       return error;
     });

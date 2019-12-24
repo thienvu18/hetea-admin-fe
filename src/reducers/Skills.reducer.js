@@ -2,7 +2,7 @@ import * as types from '../constants/constants';
 
 const initialState = {
   SkillsInfo: [],
-  isUpdateskill: ''
+  isUpdateSkill: ''
 };
 
 const SkillsInfoReducer = (state = initialState, action) => {

@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   const SkillsState = state.SkillsReducer;
   return {
     data: SkillsState.SkillsInfo,
-    isUpdateskill: SkillsState.isUpdateskill
+    isUpdateSkill: SkillsState.isUpdateSkill
   };
 };
 
@@ -71,7 +71,6 @@ class SkillsInfoTable extends React.Component {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  console.log(oldData, newData);
                   st.UpdateSkillInfo(newData, UserCookie);
                   st.GetSkillsInfo(UserCookie);
                 }
