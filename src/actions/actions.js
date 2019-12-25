@@ -265,10 +265,17 @@ export const DeleteSkillInfoRequest = (data, token) => {
   };
 };
 
-//==========================================================================clear value=========================================
+//==========================================================================clear value========================================================
 export const ClearValueErrInUser = () => {
   return {
     type: types.clearValueErrInUser
+  }
+};
+
+//==========================================================================logout==========================================================
+export const Logout = () => {
+  return {
+    type: types.logout
   }
 };
 
@@ -353,6 +360,34 @@ export const DeleteContractRequest = (data, token) => {
   return dispatch => {
     return OnclickDeleteContract(data, token).then(res => {
       dispatch(DeleteContract(data, token, res));
+    });
+  };
+};
+
+
+//====================================================================get top turnover=================================================================
+function OnclickGetTopTurnover(data, token) {
+  const res = axios
+    .delete(`${types.stringConnect}/Contracts/${data.id}`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const GetTopTurnover = (data, token, res) => {
+  return {
+    type: types.getTopTurnover,
+    data: { data, token, res }
+  };
+};
+
+export const GetTopTurnoverRequest = (data, token) => {
+  return dispatch => {
+    return OnclickGetTopTurnover(data, token).then(res => {
+      dispatch(GetTopTurnover(data, token, res));
     });
   };
 };

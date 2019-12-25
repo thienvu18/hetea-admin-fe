@@ -1,3 +1,3 @@
-import Chart from '../components/Chart';
+import Dashboard from '../components/Dashboard';
 
-export default Chart;
+export default Dashboard;

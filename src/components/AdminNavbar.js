@@ -17,6 +17,24 @@ import {
   Container,
   Media
 } from "reactstrap";
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+import { withRouter, Redirect } from 'react-router-dom';
+
+const mapStateToProps = state => {
+  const SkillsState = state.SkillsReducer;
+  return {
+    data: SkillsState.TopTurnover,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    Logout: () => {
+      dispatch(actions.Logout());
+    },
+  };
+};
 
 class AdminNavbar extends React.Component {
   render() {
@@ -80,7 +98,12 @@ class AdminNavbar extends React.Component {
                     <span>Support</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                  <DropdownItem onClick={e => {
+                    e.preventDefault();
+                    console.log("ffffffffwwwwwwwwww");
+                    this.props.Logout();
+                    this.props.history.push('/login');
+                  }}>
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>
@@ -94,4 +117,9 @@ class AdminNavbar extends React.Component {
   }
 }
 
-export default AdminNavbar;
+const AdminNavbarPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminNavbar);
+
+export default withRouter(AdminNavbarPage);

@@ -27,3 +27,7 @@ export const deleteContract = 'DELETE_CONTRACT';
 
 export const clearValueErrInUser = 'CLEAR_VALUE_ERR_USER';
 
+export const getTopTurnover = 'GET_TOP_TURNOVER';
+
+export const logout = 'LOGOUT';
+

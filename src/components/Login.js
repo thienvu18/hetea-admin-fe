@@ -27,7 +27,7 @@ class Login extends React.Component {
   render() {
     const st = this.props;
     if (this.props.token !== '' && this.props.token !== 'err') {
-      return <Redirect to="/admin"></Redirect>;
+      return <Redirect to="/admin/dashboard"></Redirect>;
     }
     if (this.props.token === 'err') {
       this.err="Invalid username or password"

@@ -1,7 +1,8 @@
 import * as types from '../constants/constants';
+import cookie from 'react-cookies';
 
 const initialState = {
-  token:'',
+  token: '',
   username: '',
   password: '',
   id: '',
@@ -31,6 +32,17 @@ const LoginReducer = (state = initialState, action) => {
       } catch (err) {
       }
       console.log("state", st);
+      return st;
+    }
+    case types.logout: {
+      let st = JSON.parse(JSON.stringify(state))
+      st.username = '';
+      st.password = '';
+      st.id = '';
+      st.token = '';
+      st.name = '';
+      st.image = '';
+      cookie.remove('token', { path: '/' });
       return st;
     }
     default:
