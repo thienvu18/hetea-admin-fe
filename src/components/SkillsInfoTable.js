@@ -72,7 +72,6 @@ class SkillsInfoTable extends React.Component {
                 resolve();
                 if (oldData) {
                   st.UpdateSkillInfo(newData, UserCookie);
-                  st.GetSkillsInfo(UserCookie);
                 }
               }, 600);
             }),
@@ -82,7 +81,6 @@ class SkillsInfoTable extends React.Component {
                 resolve();
                 console.log(oldData);
                 st.DeleteSkillInfo(oldData, UserCookie);
-                st.GetSkillsInfo(UserCookie);
               }, 600);
             })
         }}

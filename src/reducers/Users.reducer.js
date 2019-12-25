@@ -2,46 +2,63 @@ import * as types from '../constants/constants';
 
 const initialState = {
   usersInfo: [],
-  isUpdateUser: ''
+  admin: [],
+  isCreate: ''
 };
 
 
 const UsersInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.getUsersInfo: {
-      const st = { ...state };
+      let st = JSON.parse(JSON.stringify(state));
       try {
-          st.usersInfo = action.data.res.data;
-          console.log("user",st.usersInfo);
+        st.usersInfo = action.data.res.data;
+        st.usersInfo = st.usersInfo.filter(user => user.role === 'user');
       } catch (err) {
       }
-      console.log("state user", st);
+      console.log(st);
       return st;
     }
     case types.updateUserInfo: {
-      const st = { ...state };
+      let st = JSON.parse(JSON.stringify(state));
       try {
         // eslint-disable-next-line no-unused-vars
         const res = action.data.res.data;
-        
-      } catch (err) {}
+        for (var i = 0; i < st.usersInfo.length; i++) {
+          if (st.usersInfo[i].id === res.id) {
+            st.usersInfo[i] = JSON.parse(JSON.stringify(res));
+          }
+        }
+      } catch (err) { }
       return st;
     }
     case types.deleteUserInfo: {
-      const st = { ...state };
+      let st = JSON.parse(JSON.stringify(state))
       try {
-        // eslint-disable-next-line no-unused-vars
-        const res = action.data.res.data;
-      } catch (err) {}
+        // st.usersInfo.splice(st.usersInfo.findIndex(v => v.id === res.id), 1);
+        st.usersInfo = st.usersInfo.filter(person => person.id !== action.data.data.id);
+      } catch (err) { }
       return st;
     }
-    case types.addUserInfo: {
-      const UsersInfo = [...state.UsersInfo];
+    case types.addAdminInfo: {
+      let st = JSON.parse(JSON.stringify(state));
       try {
-        UsersInfo.push(action.data.res.data);
-      } catch (err) {}
-      console.log('User add', UsersInfo);
-      return { ...state, UsersInfo };
+        const temp = action.data.res.data.user;
+        st.isCreate = 'success';
+      } catch (err) {
+        if (action.data.res.request.status === 409) {
+          st.isCreate = "Email already exists";
+        }
+        else {
+          st.isCreate = "There was an error, please try again";
+        }
+      }
+      return st;
+    }
+    case types.clearValueErrInUser: {
+      let st = JSON.parse(JSON.stringify(state))
+      st.isCreate = '';
+      return st;
     }
     default:
       return state;

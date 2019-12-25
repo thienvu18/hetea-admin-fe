@@ -69,7 +69,7 @@ function OnclickUpdateUserInfo(data, token) {
   const res = axios
     .put(
       `${types.stringConnect}/users/${data.id}`,
-      { name: data.name, picture: data.picture },
+      { name: data.name, picture: data.picture, isLock: data.isLock },
       {
         headers: { Authorization: `bearer ${token}` }
       }
@@ -95,15 +95,12 @@ export const UpdateUserInfoRequest = (data, token) => {
   };
 };
 
-//==============================================================Add User==================================================================
-function OnclickAddUserInfo(data, token) {
+//================================================================Add admin=========================================================
+function OnclickAddAdminInfo(data) {
   const res = axios
     .post(
       `${types.stringConnect}/users`,
-      { User: data.User, color: data.color },
-      {
-        headers: { Authorization: `bearer ${token}` }
-      }
+      { access_token: 'DmPHDlGyAx3dzzx7Hsqbj3olNiwWWBUe',email: data.email, password: data.password, name: data.name, picture: data.picture, role: data.role },
     )
     .catch(error => {
       return error;
@@ -111,21 +108,20 @@ function OnclickAddUserInfo(data, token) {
   return res;
 }
 
-export const AddUserInfo = (data, token, res) => {
+export const AddAdminInfo = (data, res) => {
   return {
-    type: types.addUserInfo,
-    data: { token, res }
+    type: types.addAdminInfo,
+    data: { data, res }
   };
 };
 
-export const AddUserInfoRequest = (data, token) => {
+export const AddAdminInfoRequest = (data) => {
   return dispatch => {
-    return OnclickAddUserInfo(data, token).then(res => {
-      dispatch(AddUserInfo(data, token, res));
+    return OnclickAddAdminInfo(data).then(res => {
+      dispatch(AddAdminInfo(data, res));
     });
   };
 };
-
 //====================================================================delete User=================================================================
 function OnclickDeleteUserInfo(data, token) {
   const res = axios
@@ -141,7 +137,7 @@ function OnclickDeleteUserInfo(data, token) {
 export const DeleteUserInfo = (data, token, res) => {
   return {
     type: types.deleteUserInfo,
-    data: { token, res }
+    data: { data, token, res }
   };
 };
 
@@ -257,7 +253,7 @@ function OnclickDeleteSkillInfo(data, token) {
 export const DeleteSkillInfo = (data, token, res) => {
   return {
     type: types.deleteSkillInfo,
-    data: { token, res }
+    data: { data, token, res }
   };
 };
 
@@ -267,4 +263,10 @@ export const DeleteSkillInfoRequest = (data, token) => {
       dispatch(DeleteSkillInfo(data, token, res));
     });
   };
+};
+
+export const ClearValueErrInUser = () => {
+  return {
+    type: types.clearValueErrInUser
+  }
 };

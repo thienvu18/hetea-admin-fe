@@ -3,6 +3,8 @@ import MaterialTable from 'material-table';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import cookie from 'react-cookies';
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 const mapStateToProps = state => {
   const UsersState = state.UsersReducer;
@@ -19,9 +21,6 @@ const mapDispatchToProps = dispatch => {
     },
     UpdateUserInfo: (data, token) => {
       dispatch(actions.UpdateUserInfoRequest(data, token));
-    },
-    AddUserInfo: (data, token) => {
-      dispatch(actions.AddUserInfoRequest(data, token));
     },
     DeleteUserInfo: (data, token) => {
       dispatch(actions.DeleteUserInfoRequest(data, token));
@@ -58,7 +57,8 @@ class UsersInfoTable extends React.Component {
       },
       {
         title: 'Lock',
-        field: 'lock'
+        field: 'isLock',
+        type:'boolean'
       }
     ];
   }
@@ -76,23 +76,16 @@ class UsersInfoTable extends React.Component {
         title="Users Infomation List"
         columns={this.columns}
         data={st.data}
+        options={{
+          exportButton: true
+        }}
         editable={{
-          onRowAdd: newData =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                console.log(newData);
-                st.AddUserInfo(newData, UserCookie);
-              }, 600);
-            }),
           onRowUpdate: (newData, oldData) =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  console.log(oldData, 'new', newData);
                   st.UpdateUserInfo(newData, UserCookie);
-                  // st.GetUsersInfo(UserCookie);
                 }
               }, 600);
             }),
@@ -102,7 +95,6 @@ class UsersInfoTable extends React.Component {
                 resolve();
                 console.log(oldData);
                 st.DeleteUserInfo(oldData, UserCookie);
-                st.GetUsersInfo(UserCookie);
               }, 600);
             })
         }}

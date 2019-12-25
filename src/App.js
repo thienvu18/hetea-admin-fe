@@ -7,7 +7,6 @@ import './assets/vendor/@fortawesome/fontawesome-free/css/all.min.css';
 import './assets/scss/argon-dashboard-react.scss';
 import Login from './pages/LoginPage';
 import AdminPage from './pages/AdminPage';
-// import Login from './components/UserInfoTable';
 
 function App() {
   return (
