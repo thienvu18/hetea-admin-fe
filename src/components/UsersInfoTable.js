@@ -3,8 +3,6 @@ import MaterialTable from 'material-table';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import cookie from 'react-cookies';
-import Checkbox from '@material-ui/core/Checkbox';
-
 
 const mapStateToProps = state => {
   const UsersState = state.UsersReducer;

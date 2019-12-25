@@ -265,8 +265,94 @@ export const DeleteSkillInfoRequest = (data, token) => {
   };
 };
 
+//==========================================================================clear value=========================================
 export const ClearValueErrInUser = () => {
   return {
     type: types.clearValueErrInUser
   }
+};
+
+//===========================================================get skills info=======================================================================
+function OnclickGetContracts(token) {
+  const res = axios
+    .get(`${types.stringConnect}/Contracts`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const GetContracts = (token, res) => {
+  return {
+    type: types.getContracts,
+    data: { token, res }
+  };
+};
+
+export const GetContractsRequest = token => {
+  return dispatch => {
+    return OnclickGetContracts(token).then(res => {
+      dispatch(GetContracts(token, res));
+    });
+  };
+};
+
+//============================================Update Contract info======================================================================
+function OnclickUpdateContract(data, token) {
+  const res = axios
+    .put(
+      `${types.stringConnect}/Contracts/${data.id}`,
+      { Contract: data.Contract, color: data.color },
+      {
+        headers: { Authorization: `bearer ${token}` }
+      }
+    )
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const UpdateContract = (data, token, res) => {
+  return {
+    type: types.updateContract,
+    data: { token, res }
+  };
+};
+
+export const UpdateContractRequest = (data, token) => {
+  return dispatch => {
+    return OnclickUpdateContract(data, token).then(res => {
+      dispatch(UpdateContract(data, token, res));
+    });
+  };
+};
+
+//====================================================================delete Contract=================================================================
+function OnclickDeleteContract(data, token) {
+  const res = axios
+    .delete(`${types.stringConnect}/Contracts/${data.id}`, {
+      headers: { Authorization: `bearer ${token}` }
+    })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const DeleteContract = (data, token, res) => {
+  return {
+    type: types.deleteContract,
+    data: { data, token, res }
+  };
+};
+
+export const DeleteContractRequest = (data, token) => {
+  return dispatch => {
+    return OnclickDeleteContract(data, token).then(res => {
+      dispatch(DeleteContract(data, token, res));
+    });
+  };
 };

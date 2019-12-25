@@ -19,5 +19,11 @@ export const addSkillInfo = 'ADD_SKILL_INFO';
 
 export const deleteSkillInfo = 'DELETE_SKILL_INFO';
 
+export const getContracts = 'GET_CONTRACTS';
+
+export const updateContract = 'UPDATE_CONTRACT';
+
+export const deleteContract = 'DELETE_CONTRACT';
+
 export const clearValueErrInUser = 'CLEAR_VALUE_ERR_USER';
 

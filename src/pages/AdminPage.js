@@ -3,6 +3,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
 import Sidebar from "../components/Sidebar";
+import cookie from 'react-cookies';
+import { Redirect } from 'react-router-dom';
 
 import routes from "../routes";
 
@@ -40,6 +42,10 @@ class Admin extends React.Component {
     return "Brand";
   };
   render() {
+    const UserCookie = cookie.load('token');
+    if (UserCookie === undefined) {
+      return <Redirect to='login' />
+    }
     return (
       <>
         <Sidebar
