@@ -1,27 +1,14 @@
-import LoginPage from './pages/LoginPage';
+// import LoginPage from './pages/LoginPage';
 import CreatePage from './pages/CreatePage'; 
-import UserInfoPage from './pages/UserInfoPage';
+import UsersInfoPage from './pages/UsersInfoPage';
+import SkillsInfoPage from './pages/SkillsInfoPage';
 
 var routes = [
   {
-    path: '/index',
+    path: '/Index',
     name: 'Dashboard',
     icon: 'ni ni-tv-2 text-primary',
     component: CreatePage,
-    layout: '/admin'
-  },
-  {
-    path: '/icons',
-    name: 'Icons',
-    icon: 'ni ni-planet text-blue',
-    component: LoginPage,
-    layout: '/admin'
-  },
-  {
-    path: '/maps',
-    name: 'Maps',
-    icon: 'ni ni-pin-3 text-orange',
-    component: LoginPage,
     layout: '/admin'
   },
   {
@@ -32,10 +19,17 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/UserInfo',
-    name: 'User Infomation',
+    path: '/SkillsInfo',
+    name: 'Skills Infomation',
+    icon: 'ni ni-bullet-list-67 text-blue',
+    component: SkillsInfoPage,
+    layout: '/admin'
+  },
+  {
+    path: '/UsersInfo',
+    name: 'Users Infomation',
     icon: 'ni ni-bullet-list-67 text-red',
-    component: UserInfoPage,
+    component: UsersInfoPage,
     layout: '/admin'
   },
 ];

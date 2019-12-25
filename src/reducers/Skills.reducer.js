@@ -1,33 +1,20 @@
 import * as types from '../constants/constants';
 
 const initialState = {
-  usersInfo: [],
-  isUpdateUser: ''
+  SkillsInfo: [],
+  isUpdateSkill: ''
 };
 
-
-const UsersInfoReducer = (state = initialState, action) => {
+const SkillsInfoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.getUsersInfo: {
+    case types.getSkillsInfo: {
       const st = { ...state };
       try {
-          st.usersInfo = action.data.res.data;
-          console.log("user",st.usersInfo);
-      } catch (err) {
-      }
-      console.log("state user", st);
-      return st;
-    }
-    case types.updateUserInfo: {
-      const st = { ...state };
-      try {
-        // eslint-disable-next-line no-unused-vars
-        const res = action.data.res.data;
-        
+        st.SkillsInfo = action.data.res.data.rows;
       } catch (err) {}
       return st;
     }
-    case types.deleteUserInfo: {
+    case types.updateSkillInfo: {
       const st = { ...state };
       try {
         // eslint-disable-next-line no-unused-vars
@@ -35,17 +22,25 @@ const UsersInfoReducer = (state = initialState, action) => {
       } catch (err) {}
       return st;
     }
-    case types.addUserInfo: {
-      const UsersInfo = [...state.UsersInfo];
+    case types.deleteSkillInfo: {
+      const st = { ...state };
       try {
-        UsersInfo.push(action.data.res.data);
+        // eslint-disable-next-line no-unused-vars
+        const res = action.data.res.data;
       } catch (err) {}
-      console.log('User add', UsersInfo);
-      return { ...state, UsersInfo };
+      return st;
+    }
+    case types.addSkillInfo: {
+      const SkillsInfo = [...state.SkillsInfo];
+      try {
+        SkillsInfo.push(action.data.res.data);
+      } catch (err) {}
+      console.log('Skill add', SkillsInfo);
+      return { ...state, SkillsInfo };
     }
     default:
       return state;
   }
 };
 
-export default UsersInfoReducer;
+export default SkillsInfoReducer;

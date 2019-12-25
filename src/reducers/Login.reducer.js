@@ -29,7 +29,6 @@ const LoginReducer = (state = initialState, action) => {
         st.image = action.data.res.data.user.picture;
         setCookie('token', action.data.res.data.token, 7);
       } catch (err) {
-        st.token = 'err';
       }
       console.log("state", st);
       return st;
