@@ -189,98 +189,111 @@ class Create extends React.PureComponent {
                         </Col>
                     </Row>
                     <Row style={{ marginTop: "30px", paddingBottom: "20px" }}>
-                        <Col xl="6">
-                            <Row>
-                                <Col lg="12">
-                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <Grid container justify="space-around">
-                                            <KeyboardDatePicker
-                                                disableToolbar
-                                                variant="inline"
-                                                format="MM/dd/yyyy"
-                                                margin="normal"
-                                                id="date-picker-inline"
-                                                label="Date picker inline"
-                                                value={this.DateStartChart}
-                                                onChange={(date) => this.handleDateStartTutorChange(date)}
-                                                KeyboardButtonProps={{
-                                                    'aria-label': 'change date',
-                                                }}
-                                            />
-                                            <KeyboardDatePicker
-                                                margin="normal"
-                                                id="date-picker-dialog"
-                                                label="Date picker dialog"
-                                                format="MM/dd/yyyy"
-                                                value={this.DateEndChart}
-                                                onChange={(date) => this.handleDateEndTutorChange(date)}
-                                                KeyboardButtonProps={{
-                                                    'aria-label': 'change date',
-                                                }}
-                                            />
-                                        </Grid>
-                                    </MuiPickersUtilsProvider>
-                                </Col>
-                                <Col lg="12" style={{ margin: "5px 10%" }}>
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-first-name"
-                                        style={{ width: "20%" }}
-                                    >
-                                        Type:
+                        <Col xl="1"></Col>
+                        <Col xl="10">
+                            <Card className="bg-secondary shadow">
+                                <CardHeader className="bg-white border-0">
+                                    <Row className="align-items-center">
+                                        <Col xs="12">
+                                            <h3 className="mb-0">Chart</h3>
+                                        </Col>
+                                    </Row>
+                                </CardHeader>
+                                <Col xl="12">
+                                    <Row>
+                                        <Col lg="12">
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <Grid container justify="space-around">
+                                                    <KeyboardDatePicker
+                                                        disableToolbar
+                                                        variant="inline"
+                                                        format="MM/dd/yyyy"
+                                                        margin="normal"
+                                                        id="date-picker-inline"
+                                                        label="Date picker inline"
+                                                        value={this.DateStartChart}
+                                                        onChange={(date) => this.handleDateStartTutorChange(date)}
+                                                        KeyboardButtonProps={{
+                                                            'aria-label': 'change date',
+                                                        }}
+                                                    />
+                                                    <KeyboardDatePicker
+                                                        margin="normal"
+                                                        id="date-picker-dialog"
+                                                        label="Date picker dialog"
+                                                        format="MM/dd/yyyy"
+                                                        value={this.DateEndChart}
+                                                        onChange={(date) => this.handleDateEndTutorChange(date)}
+                                                        KeyboardButtonProps={{
+                                                            'aria-label': 'change date',
+                                                        }}
+                                                    />
+                                                </Grid>
+                                            </MuiPickersUtilsProvider>
+                                        </Col>
+                                        <Col lg="12" style={{ margin: "5px 0px" }}>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-first-name"
+                                                style={{ width: "20%" }}
+                                            >
+                                                Type:
                                 </label>
-                                    <label style={{ marginRight: "10%" }}>
-                                        <input type="radio" name="radioButtonName" value="day"
-                                            defaultChecked
-                                            onChange={event => {
-                                                this.typeTutor = event.target.value;
-                                                const data = {
-                                                    startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
-                                                }
-                                                st.GetTutorRequest(data, UserCookie);
-                                            }} />
-                                        day
+                                            <label style={{ marginRight: "10%" }}>
+                                                <input type="radio" name="radioButtonName" value="day"
+                                                    defaultChecked
+                                                    onChange={event => {
+                                                        this.typeTutor = event.target.value;
+                                                        const data = {
+                                                            startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
+                                                        }
+                                                        st.GetTutorRequest(data, UserCookie);
+                                                    }} />
+                                                day
                               </label>
-                                    <label style={{ marginRight: "10%" }}>
-                                        <input type="radio" name="radioButtonName" value="week"
-                                            onChange={event => {
-                                                this.typeTutor = event.target.value;
-                                                const data = {
-                                                    startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
-                                                }
-                                                st.GetTutorRequest(data, UserCookie);
-                                            }} />
-                                        week
+                                            <label style={{ marginRight: "10%" }}>
+                                                <input type="radio" name="radioButtonName" value="week"
+                                                    onChange={event => {
+                                                        this.typeTutor = event.target.value;
+                                                        const data = {
+                                                            startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
+                                                        }
+                                                        st.GetTutorRequest(data, UserCookie);
+                                                    }} />
+                                                week
                               </label>
-                                    <label style={{ marginRight: "10%" }}>
-                                        <input type="radio" name="radioButtonName" value="month"
-                                            onChange={event => {
-                                                this.typeTutor = event.target.value;
-                                                const data = {
-                                                    startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
-                                                }
-                                                st.GetTutorRequest(data, UserCookie);
-                                            }} />
-                                        month
+                                            <label style={{ marginRight: "10%" }}>
+                                                <input type="radio" name="radioButtonName" value="month"
+                                                    onChange={event => {
+                                                        this.typeTutor = event.target.value;
+                                                        const data = {
+                                                            startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
+                                                        }
+                                                        st.GetTutorRequest(data, UserCookie);
+                                                    }} />
+                                                month
                               </label>
-                                    <label style={{ marginRight: "10%" }}>
-                                        <input type="radio" name="radioButtonName" value="year"
-                                            onChange={event => {
-                                                this.typeTutor = event.target.value;
-                                                const data = {
-                                                    startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
-                                                }
-                                                st.GetTutorRequest(data, UserCookie);
-                                            }} />
-                                        year
+                                            <label style={{ marginRight: "10%" }}>
+                                                <input type="radio" name="radioButtonName" value="year"
+                                                    onChange={event => {
+                                                        this.typeTutor = event.target.value;
+                                                        const data = {
+                                                            startDate: this.DateStartTutor.toISOString(), endDate: this.DateEndTutor.toISOString(), unit: this.typeTutor
+                                                        }
+                                                        st.GetTutorRequest(data, UserCookie);
+                                                    }} />
+                                                year
                               </label>
 
+                                        </Col>
+                                    </Row>
+                                    <TopTurnover></TopTurnover>
                                 </Col>
-                            </Row><center><TopTurnover></TopTurnover></center>
+                            </Card>
                         </Col>
-                        <Col xl="6">
+                        {/* <Col xl="6">
                             <center><TopSalesBySkill></TopSalesBySkill></center>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
             </>
