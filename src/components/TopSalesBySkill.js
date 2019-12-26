@@ -2,7 +2,7 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import cookie from 'react-cookies';
+// import cookie from 'react-cookies';
 
 const mapStateToProps = state => {
   const SkillsState = state.SkillsReducer;
@@ -35,7 +35,7 @@ class TopSalesBySkillTable extends React.Component {
   }
 
   componentDidMount() {
-    const UserCookie = cookie.load('token');
+    // const UserCookie = cookie.load('token');
     // this.props.GetTopTurnover(UserCookie);
   }
 

@@ -2,19 +2,19 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import cookie from 'react-cookies';
+// import cookie from 'react-cookies';
 
 const mapStateToProps = state => {
-  const SkillsState = state.SkillsReducer;
+  const StatisticState = state.StatisticReducer;
   return {
-    data: SkillsState.TopTurnover,
+    tutor: StatisticState.tutor,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    GetTopTurnover: token => {
-      dispatch(actions.GetTopTurnoverRequest(token));
+    GetTopTurnover: (data,token) => {
+      dispatch(actions.GetTopTurnoverRequest(data,token));
     },
   };
 };
@@ -26,26 +26,20 @@ class TopTurnoverTable extends React.Component {
       {
         title: 'Id',
         field: 'id',
-        cellStyle: { display: 'none' },
-        headerStyle: { display: 'none' }
       },
       { title: 'Tutor', field: 'tutor' },
-      { title: 'Price', field: 'price' }
+      { title: 'value', field: 'value' }
     ];
   }
 
-  componentDidMount() {
-    const UserCookie = cookie.load('token');
-    // this.props.GetTopTurnover(UserCookie);
-  }
-
     render() {
-        const st = this.props;
+      const st = this.props;
+      console.log(st.tutor);
     return (
       <MaterialTable
         title="Top sales by tutor"
         columns={this.columns}
-        data={st.data}
+        data={st.tutor}
       />
     );
   }

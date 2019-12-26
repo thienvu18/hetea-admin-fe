@@ -19,7 +19,7 @@ import {
 } from "reactstrap";
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
   const SkillsState = state.SkillsReducer;

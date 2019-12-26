@@ -8,11 +8,11 @@ const initialState = {
 const ContractsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.getContracts: {
-      const st = { ...state };
-      console.log("get Contract", action.data.res.data);
+      let st=JSON.parse(JSON.stringify(state))
       try {
         st.Contracts = action.data.res.data.rows;
       } catch (err) {}
+      console.log("get Contract", st);
       return st;
     }
     case types.updateContract: {

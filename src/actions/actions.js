@@ -100,7 +100,7 @@ function OnclickAddAdminInfo(data) {
   const res = axios
     .post(
       `${types.stringConnect}/users`,
-      { access_token: 'DmPHDlGyAx3dzzx7Hsqbj3olNiwWWBUe',email: data.email, password: data.password, name: data.name, picture: data.picture, role: data.role },
+      { access_token: 'DmPHDlGyAx3dzzx7Hsqbj3olNiwWWBUe', email: data.email, password: data.password, name: data.name, picture: data.picture, role: data.role },
     )
     .catch(error => {
       return error;
@@ -308,12 +308,16 @@ export const GetContractsRequest = token => {
 
 //============================================Update Contract info======================================================================
 function OnclickUpdateContract(data, token) {
+  const startDate = new Date(data.startDate).toISOString();
+  const endDate = new Date(data.endDate).toISOString();;
   const res = axios
     .put(
-      `${types.stringConnect}/Contracts/${data.id}`,
-      { Contract: data.Contract, color: data.color },
+      `${types.stringConnect}/contracts/${data.id}`,
       {
-        headers: { Authorization: `bearer ${token}` }
+        access_token: token, tutor: data.tutor,
+        tutee: data.tutee, hours: data.hours,
+        price: data.price, startDate: startDate,
+        endDate: endDate, status: data.status
       }
     )
     .catch(error => {
@@ -340,7 +344,7 @@ export const UpdateContractRequest = (data, token) => {
 //====================================================================delete Contract=================================================================
 function OnclickDeleteContract(data, token) {
   const res = axios
-    .delete(`${types.stringConnect}/Contracts/${data.id}`, {
+    .delete(`${types.stringConnect}/contracts/${data.id}`, {
       headers: { Authorization: `bearer ${token}` }
     })
     .catch(error => {
@@ -368,9 +372,15 @@ export const DeleteContractRequest = (data, token) => {
 //====================================================================get top turnover=================================================================
 function OnclickGetTopTurnover(data, token) {
   const res = axios
-    .delete(`${types.stringConnect}/Contracts/${data.id}`, {
-      headers: { Authorization: `bearer ${token}` }
-    })
+    .get(`${types.stringConnect}/statistics/toptutorrevenue`,
+      {
+        headers: { Authorization: `bearer ${token}` },
+        params: {
+          startDate: data.startDate,
+          endDate: data.endDate,
+          unit: data.unit
+        }
+      })
     .catch(error => {
       return error;
     });
@@ -391,3 +401,38 @@ export const GetTopTurnoverRequest = (data, token) => {
     });
   };
 };
+
+//====================================================================get chart=================================================================
+function OnclickGetChart(data, token) {
+  const res = axios
+    .get(`${types.stringConnect}/statistics/revenue`,
+      {
+        headers: { Authorization: `bearer ${token}` },
+        params: {
+          startDate: data.startDate,
+          endDate: data.endDate,
+          unit: data.unit
+        }
+      })
+    .catch(error => {
+      return error;
+    });
+  return res;
+}
+
+export const GetChart = (data, token, res) => {
+  return {
+    type: types.getChart,
+    data: { data, token, res }
+  };
+};
+
+export const GetChartRequest = (data, token) => {
+  return dispatch => {
+    return OnclickGetChart(data, token).then(res => {
+      dispatch(GetChart(data, token, res));
+    });
+  };
+};
+
+

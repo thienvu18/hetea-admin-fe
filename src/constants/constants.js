@@ -31,3 +31,5 @@ export const getTopTurnover = 'GET_TOP_TURNOVER';
 
 export const logout = 'LOGOUT';
 
+export const getChart = 'CHART';
+

@@ -42,16 +42,15 @@ const UsersInfoReducer = (state = initialState, action) => {
     }
     case types.addAdminInfo: {
       let st = JSON.parse(JSON.stringify(state));
-      try {
-        const temp = action.data.res.data.user;
-        st.isCreate = 'success';
-      } catch (err) {
-        if (action.data.res.request.status === 409) {
-          st.isCreate = "Email already exists";
-        }
-        else {
-          st.isCreate = "There was an error, please try again";
-        }
+      console.log(action.data.res.request.status);
+      if (action.data.res.request.status === 201) {
+        st.isCreate = "Create Account Success";
+      }
+      else if (action.data.res.request.status === 409) {
+        st.isCreate = "Email already exists";
+      }
+      else {
+        st.isCreate = "There was an error, please try again";
       }
       return st;
     }

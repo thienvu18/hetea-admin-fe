@@ -5,10 +5,9 @@ import * as actions from '../actions/actions';
 import cookie from 'react-cookies';
 
 const mapStateToProps = state => {
-  const SkillsState = state.SkillsReducer;
+  const ContractsState = state.ContractsReducer;
   return {
-    data: SkillsState.Contracts,
-    isUpdateSkill: SkillsState.isUpdateSkill
+    data: ContractsState.Contracts,
   };
 };
 
@@ -38,10 +37,10 @@ class ContractsTable extends React.Component {
       },
       { title: 'Tutor', field: 'tutor' },
       { title: 'Tutee', field: 'tutee' },
-      { title: 'Hours', field: 'hours' },
-      { title: 'Price', field: 'price' },
-      { title: 'StartDate', field: 'startDate' },
-      { title: 'EndDate', field: 'endDate' },
+      { title: 'Hours', field: 'hours',type:'numeric' },
+      { title: 'Price', field: 'price',type:'numeric' },
+      { title: 'StartDate', field: 'startDate',type:'date' },
+      { title: 'EndDate', field: 'endDate',type:'date' },
       { title: 'Status', field: 'status' },
     ];
   }
@@ -56,7 +55,7 @@ class ContractsTable extends React.Component {
     const UserCookie = cookie.load('token');
     return (
       <MaterialTable
-        title="Skills Infomation List"
+        title="Contracts List"
         columns={this.columns}
         data={st.data}
         editable={{

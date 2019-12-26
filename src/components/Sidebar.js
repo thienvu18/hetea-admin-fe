@@ -6,16 +6,11 @@ import { PropTypes } from "prop-types";
 // reactstrap components
 import {
   Collapse,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
   Form,
   Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Media,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -25,9 +20,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
-import { withRouter, Redirect } from 'react-router-dom';
 
 class Sidebar extends React.Component {
   state = {
